@@ -129,18 +129,18 @@ exports.total = function(assignments) {
           total_possible += curr.total
         }, total_possible);
 
-        // assignments.reduce(val => {
-        //   total_score += val.score
-        // }, total_score);
+        assignments.reduce((prev, curr, index, array) => {
+          total_score += curr.score
+        }, total_score);
 
-        // assignments.forEach(val => {
-        //   if(!grades[val.grade]) {
-        //     grades[val.grade] = 1
-        //   }
-        //   else {
-        //     grades[val.grade] = grades[val.grade] + 1
-        //   }
-        // });
+        assignments.forEach(val => {
+          if(!grades[val.grade]) {
+            grades[val.grade] = 1
+          }
+          else {
+            grades[val.grade] = grades[val.grade] + 1
+          }
+        });
 
         resolve({total_possible: total_possible, total_score: total_score, grades: grades})
     }
