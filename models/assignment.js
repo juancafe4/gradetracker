@@ -1,4 +1,5 @@
 //Assignment model
+"use strict"
 const squel = require('squel').useFlavour('mysql');
 const connection = require('../config/db');
 
