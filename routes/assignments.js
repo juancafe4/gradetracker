@@ -29,8 +29,8 @@ router.post('/', (req, res) => {
     });
 });
 
-router.delete('/', (req, res) => {
-  Assignment.delete(req.body)
+router.delete('/:id', (req, res) => {
+  Assignment.delete(req.params.id)
     .then(() => {
       res.send('Success deleting')
     })
