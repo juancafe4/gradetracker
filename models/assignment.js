@@ -140,7 +140,7 @@ exports.total = function(assignments) {
           }
         // });
 
-        resolve(total_possible, total_score, grades)
+        resolve({total_possible, total_score, grades})
     }
   });
 }
