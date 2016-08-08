@@ -28,4 +28,14 @@ router.post('/', (req, res) => {
       res.status(400).send(`Error posting... ${err}`)
     });
 });
+
+router.delete('/', (req, res) => {
+  Assignment.delete(req.body)
+    .then(() => {
+      res.send('Success deleting')
+    })
+    .catch(err => {
+      res.status(400).send(`Error deleting... ${err}`)
+    });
+});
 module.exports = router

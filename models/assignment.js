@@ -31,10 +31,24 @@ exports.create = function(newAssignment) {
               .set("id",  uuid.v4())
               .toString();
     connection.query(sql,  err => {
-      console.log('ERROR ' , err)
+      // console.log('ERROR ' , err)
       if (err) reject(err)
       else resolve();
     });
   });
 }
 
+//Delete an assignment
+
+exports.delete = function(id) {
+  return new Promise((resolve, reject) => {
+    let sql = squel.delete()
+                .from('assignments')
+                .where(`id = "${id}"`)
+                .toString();
+    connection.query(sql, err => {
+      if (err) reject(err)
+      else resolve()
+    })
+  });
+}
