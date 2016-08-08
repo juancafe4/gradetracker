@@ -69,18 +69,17 @@ exports.update = function(id, updateObj) {
       })
   })
 
-
-  exports.getOne() = function(id) {
-   return new Promise((resolve, reject) => {
+exports.getOne = function(id) {
+  return new Promise((resolve, reject) => {
     let sql = squel.select()
-      .from('assignments')
-      .where(`id = "${id}"`)
-      .toString();
-    connection.query(sql, (err, assignments) => {
+                  .from('assignments')
+                  .where(`id = "${id}"`)
+                  .toString();
+    connection.query(sql, (err ,assignments) => {
       let assignment = assignments[0]
       if (err) reject(err)
-      else if(!assignment) reject("Error: assignment not found!")
+      else if(!assignment) reject("Error: image not found!")
       else resolve(assignment)
     });
   });
- }
+}
