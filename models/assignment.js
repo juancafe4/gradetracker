@@ -28,7 +28,7 @@ exports.create = function(newAssignment) {
     let sql = squel.insert()
               .into('assignments')
               .setFields(newAssignment)
-              .set("id",  uuid.v4()})
+              .set("id",  uuid.v4())
               .toString();
     connection.query(sql,  err => {
       console.log('ERROR ' , err)
