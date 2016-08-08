@@ -17,8 +17,8 @@ exports.getAll = function() {
     connection.query(sql , (err, assignments) => {
       //console.log('ERROR ' , err)
       if (err) reject(err)
-      else resolve(assignments)
-    });
+        else resolve(assignments)
+      });
   })
 }
 
@@ -26,14 +26,14 @@ exports.getAll = function() {
 exports.create = function(newAssignment) {
   return new Promise((resolve, reject) => {
     let sql = squel.insert()
-              .into('assignments')
-              .setFields(newAssignment)
-              .set("id",  uuid.v4())
-              .toString();
+    .into('assignments')
+    .setFields(newAssignment)
+    .set("id",  uuid.v4())
+    .toString();
     connection.query(sql,  err => {
       // console.log('ERROR ' , err)
       if (err) reject(err)
-      else resolve();
+        else resolve();
     });
   });
 }
@@ -43,13 +43,13 @@ exports.create = function(newAssignment) {
 exports.delete = function(id) {
   return new Promise((resolve, reject) => {
     let sql = squel.delete()
-                .from('assignments')
-                .where(`id = "${id}"`)
-                .toString();
+    .from('assignments')
+    .where(`id = "${id}"`)
+    .toString();
     connection.query(sql, err => {
       if (err) reject(err)
-      else resolve()
-    })
+        else resolve()
+      })
   });
 }
 
@@ -59,13 +59,28 @@ exports.update = function(id, updateObj) {
   // if (updateObj.score) updateObj.score = parseInt(updateObj.score)
   return new Promise((resolve, reject) => {
     let sql = squel.update()
-                .table('assignments')
-                .setFields(updateObj)
-                .where(`id = "${id}"`)
-                .toString();
+    .table('assignments')
+    .setFields(updateObj)
+    .where(`id = "${id}"`)
+    .toString();
     connection.query(sql, err => {
       if (err) reject(err)
-      else resolve()
-    })
+        else resolve()
+      })
   })
-}
+
+
+  exports.getOne() = function(id) {
+   return new Promise((resolve, reject) => {
+    let sql = squel.select()
+      .from('assignments')
+      .where(`id = "${id}"`)
+      .toString();
+    connection.query(sql, (err, assignments) => {
+      let assignment = assignments[0]
+      if (err) reject(err)
+      else if(!assignment) reject("Error: assignment not found!")
+      else resolve(assignment)
+    });
+  });
+ }

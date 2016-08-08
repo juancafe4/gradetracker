@@ -19,6 +19,15 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    Assignment.getOne()
+    .then(assignment => {
+      res.send(assignment)
+    })
+    .catch(err => {
+      res.status(400).send(`Error found at... ${err}`)
+    });
+});
 router.post('/', (req, res) => {
   Assignment.create(req.body)
     .then(() => {
@@ -48,4 +57,5 @@ router.put('/:id', (req, res) => {
       res.status(400).send(`Error updating... ${err}`)
     });
 });
+
 module.exports = router
