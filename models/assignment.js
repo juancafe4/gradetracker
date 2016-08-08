@@ -119,7 +119,28 @@ exports.total = function(assignments) {
   return new Promise((resolve, reject) => {
     if (!assignments) reject("Error getting total")
     else {
-        resolve()
+        let total_possible = 0;
+        let total_score = 0;
+        let grades = {};
+
+        assignments.reduce(val => {
+          total_possible += val.total
+        }, total_possible);
+
+        assignments.reduce(val => {
+          total_score += val.score
+        }, total_score);
+
+        assignments.forEach(val => {
+          if(!grades[val.grade]) {
+            grades[val.grade] = 1
+          }
+          else {
+            grades[val.grade] = grades[val.grade] + 1
+          }
+        });
+
+        resolve({total_possible: total_possible, total_score: total_score, grades: grades})
     }
   });
 }
