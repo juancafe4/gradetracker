@@ -106,7 +106,7 @@ exports.getOne = function(id) {
           assgn.grade ='D'
         else
           assgn.grade = 'F'
-        return assgn
+        
       if (err) reject(err)
       else if(!assgn) reject("Error: assignment not found!")
       else resolve(assgn)
