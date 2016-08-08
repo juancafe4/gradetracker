@@ -27,7 +27,7 @@ exports.getAll = function() {
           assgn.grade = 'B'
         else if (percent < 80 && percent >= 70)
           assgn.grade = 'C'
-        else (percent < 70 && percent >= 60)
+        else if (percent < 70 && percent >= 60)
           assgn.grade ='D'
         else
           assgn.grade = 'F'
