@@ -25,6 +25,8 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.use('/assignments', require('./routes/assignments'))
+
 //Server listen
 app.listen(port), err => {
   console.log(err || `Listenning at ${port}`);
