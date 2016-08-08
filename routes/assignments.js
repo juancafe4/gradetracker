@@ -19,4 +19,13 @@ router.get('/', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+  Assignment.create(req.body)
+    .then(() => {
+      res.send('Success posting')
+    })
+    .catch(err => {
+      res.status(400).send(`Error posting... ${err}`)
+    });
+});
 module.exports = router
