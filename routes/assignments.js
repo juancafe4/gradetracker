@@ -38,4 +38,14 @@ router.delete('/:id', (req, res) => {
       res.status(400).send(`Error deleting... ${err}`)
     });
 });
+
+router.delete('/:id', (req, res) => {
+  Assignment.update(req.params.id, req.body)
+    .then(() => {
+      res.send('Success updating')
+    })
+    .catch(err => {
+      res.status(400).send(`Error updating... ${err}`)
+    });
+});
 module.exports = router

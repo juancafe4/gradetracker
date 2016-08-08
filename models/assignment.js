@@ -52,3 +52,14 @@ exports.delete = function(id) {
     })
   });
 }
+
+//Updates the assignment
+exports.update = function(id, updateObj) {
+  return new Promise((resolve, reject) => {
+    let squl = squel.update()
+                .table('')
+                .setFields(updateObj)
+                .where(`id = "${id}"`)
+                .toString();
+  })
+}
