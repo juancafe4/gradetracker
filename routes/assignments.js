@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    Assignment.getOne()
+    Assignment.getOne(req.params.id)
     .then(assignment => {
       res.send(assignment)
     })

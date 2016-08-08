@@ -75,10 +75,10 @@ exports.getOne = function(id) {
                   .from('assignments')
                   .where(`id = "${id}"`)
                   .toString();
-    connection.query(sql, (err ,assignments) => {
+    connection.query(sql, (err , assignments) => {
       let assignment = assignments[0]
       if (err) reject(err)
-      else if(!assignment) reject("Error: image not found!")
+      else if(!assignment) reject("Error: assignment not found!")
       else resolve(assignment)
     });
   });
