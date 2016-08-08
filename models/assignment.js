@@ -30,7 +30,8 @@ exports.create = function(newAssignment) {
               .setFields(newAssignment)
               .set(`id = "${uuid.v4()}"`)
               .toString();
-    connection.query(sql, (sql, err) => {
+    connection.query(sql,  err => {
+      console.log(add)
       if (err) reject(err)
       else resolve();
     })
