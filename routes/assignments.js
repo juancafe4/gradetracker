@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       res.send(assignments)
     })
     .catch(err => {
-      res.status(400).res.send(`Error found at... ${err}`)
+      res.status(400).send(`Error found at... ${err}`)
     });
 });
 
