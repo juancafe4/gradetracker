@@ -94,10 +94,22 @@ exports.getOne = function(id) {
                   .where(`id = "${id}"`)
                   .toString();
     connection.query(sql, (err , assignments) => {
-      let assignment = assignments[0]
+      let assgn = assignments[0]
+      let percent = assgn.score / assgn.total * 100
+        if (percent >= 90) 
+          assgn.grade = 'A'
+        else if (percent < 90 && percent >= 80)
+          assgn.grade = 'B'
+        else if (percent < 80 && percent >= 70)
+          assgn.grade = 'C'
+        else if (percent < 70 && percent >= 60)
+          assgn.grade ='D'
+        else
+          assgn.grade = 'F'
+        return assgn
       if (err) reject(err)
-      else if(!assignment) reject("Error: assignment not found!")
-      else resolve(assignment)
+      else if(!assgn) reject("Error: assignment not found!")
+      else resolve(assgn)
     });
   });
 }
