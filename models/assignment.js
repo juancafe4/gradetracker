@@ -126,7 +126,7 @@ exports.total = function(assignments) {
         let grades = {};
 
         assignments.reduce((prev, curr, index, array) => {
-          total_possible += val.total
+          total_possible += curr.total
         }, total_possible);
 
         // assignments.reduce(val => {
