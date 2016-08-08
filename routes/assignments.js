@@ -8,6 +8,18 @@ const Assignment = require('../models/assignment');
 
 
 //Get Assignment
+router.get('/totals', (req, res) => {
+  Assignment.getAll()
+    .then(assignments => {
+      return Assignment.total(assignments)
+    })
+    .then(total => {
+      res.send(total)
+    })
+    .catch(err => {
+      res.status(400).send(`Error found at... ${err}`)
+    });
+});
 
 router.get('/', (req, res) => {
   Assignment.getAll()
@@ -62,17 +74,5 @@ router.put('/:id', (req, res) => {
 
 });
 
-router.get('/totals', (req, res) => {
-  Assignment.getAll()
-    .then(assignments => {
-      return Assignment.total(assignments)
-    })
-    .then(total => {
-      res.send(total)
-    })
-    .catch(err => {
-      res.status(400).send(`Error found at... ${err}`)
-    });
-});
 
 module.exports = router
