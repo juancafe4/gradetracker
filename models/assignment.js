@@ -35,7 +35,7 @@ exports.getAll = function() {
       })
 
       if (err) reject(err)
-      else resolve(assignments)
+        else resolve(assignments)
       });
   })
 }
@@ -90,26 +90,57 @@ exports.update = function(id, updateObj) {
 exports.getOne = function(id) {
   return new Promise((resolve, reject) => {
     let sql = squel.select()
-                  .from('assignments')
-                  .where(`id = "${id}"`)
-                  .toString();
+    .from('assignments')
+    .where(`id = "${id}"`)
+    .toString();
     connection.query(sql, (err , assignments) => {
       let assgn = assignments[0]
       let percent = assgn.score / assgn.total * 100
-        if (percent >= 90) 
-          assgn.grade = 'A'
-        else if (percent < 90 && percent >= 80)
-          assgn.grade = 'B'
-        else if (percent < 80 && percent >= 70)
-          assgn.grade = 'C'
-        else if (percent < 70 && percent >= 60)
-          assgn.grade ='D'
-        else
-          assgn.grade = 'F'
-        
+      if (percent >= 90) 
+        assgn.grade = 'A'
+      else if (percent < 90 && percent >= 80)
+        assgn.grade = 'B'
+      else if (percent < 80 && percent >= 70)
+        assgn.grade = 'C'
+      else if (percent < 70 && percent >= 60)
+        assgn.grade ='D'
+      else
+        assgn.grade = 'F'
+
       if (err) reject(err)
-      else if(!assgn) reject("Error: assignment not found!")
-      else resolve(assgn)
-    });
+        else if(!assgn) reject("Error: assignment not found!")
+          else resolve(assgn)
+        });
+  });
+}
+
+//Get the total score total possible and grades
+exports.total = function(assignments) {
+  return new Promise((resolve, reject) => {
+    if (!assignments) reject("Error getting total")
+    else {
+        let total_possible = 0;
+        let total_score = 0;
+        let grades = {};
+
+        assignments.reduce(val => {
+          total_possible += val.total
+        }. total_possible);
+
+        assignments.reduce(val => {
+          total_score += val.score
+        }. total_score);
+
+        assignments.forEach(val => {
+          if(!grades[val.grade]) {
+            grades[val.grade] = 1
+          }
+          else {
+            grades[val.grade] = grades[val.grade] + 1
+          }
+        });
+
+        resolve(total_possible, total_score, grades)
+    }
   });
 }

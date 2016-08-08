@@ -59,6 +59,20 @@ router.put('/:id', (req, res) => {
     .catch(err => {
       res.status(400).send(`Error updating... ${err}`)
     });
+
+});
+
+router.get('/totals', (req, res) => {
+  Assignment.getAll()
+    .then(assignments => {
+      return Assignment.total(assignments)
+    })
+    .then(total => {
+      res.send(total)
+    })
+    .catch(err => {
+      res.status(400).send(`Error found at... ${err}`)
+    });
 });
 
 module.exports = router
