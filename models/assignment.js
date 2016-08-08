@@ -141,6 +141,7 @@ exports.total = function(assignments) {
         // });
 
         resolve({total_possible, total_score, grades})
+        
     }
   });
 }
