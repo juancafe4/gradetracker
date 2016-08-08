@@ -61,5 +61,9 @@ exports.update = function(id, updateObj) {
                 .setFields(updateObj)
                 .where(`id = "${id}"`)
                 .toString();
+    connection.query(sql, err => {
+      if (err) reject(err)
+      else resolve()
+    })
   })
 }

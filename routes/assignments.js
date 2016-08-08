@@ -39,7 +39,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   Assignment.update(req.params.id, req.body)
     .then(() => {
       res.send('Success updating')
