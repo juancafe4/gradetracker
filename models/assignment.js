@@ -125,11 +125,11 @@ exports.total = function(assignments) {
 
         assignments.reduce(val => {
           total_possible += val.total
-        }. total_possible);
+        }, total_possible);
 
         assignments.reduce(val => {
           total_score += val.score
-        }. total_score);
+        }, total_score);
 
         assignments.forEach(val => {
           if(!grades[val.grade]) {
