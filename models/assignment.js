@@ -56,7 +56,7 @@ exports.delete = function(id) {
 //Updates the assignment
 exports.update = function(id, updateObj) {
   if (updateObj.total) updateObj.total = parseInt(updateObj.total)
-  if (updateObj.score) updateObj.total = parseInt(updateObj.score)
+  if (updateObj.score) updateObj.score = parseInt(updateObj.score)
   return new Promise((resolve, reject) => {
     let sql = squel.update()
                 .table('')
