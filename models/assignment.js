@@ -68,7 +68,7 @@ exports.update = function(id, updateObj) {
         else resolve()
       })
   })
-
+}
 exports.getOne = function(id) {
   return new Promise((resolve, reject) => {
     let sql = squel.select()
