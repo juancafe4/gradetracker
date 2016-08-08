@@ -12,7 +12,7 @@ const Assignment = require('../models/assignment');
 router.get('/', (req, res) => {
   Assignment.getAll()
     .then(assignment => {
-      res.send(assignments)
+      res.send(assignment)
     })
     .catch(err => {
       res.status(400).send(`Error found at... ${err}`)
