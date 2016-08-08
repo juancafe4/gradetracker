@@ -7,7 +7,7 @@ connection.query(`create table if not exists assignments (
   id varchar(50),
   name varchar(100),
   total int,
-  score init)`, err => {
+  score int)`, err => {
     if (err) throw err;
   });
 
