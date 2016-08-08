@@ -124,9 +124,9 @@ exports.total = function(assignments) {
         let total_score = 0;
         let grades = {};
 
-        // assignments.reduce(val => {
-        //   total_possible += val.total
-        // }, total_possible);
+        assignments.reduce(val => {
+          total_possible += val.total
+        }, total_possible);
 
         // assignments.reduce(val => {
         //   total_score += val.score
