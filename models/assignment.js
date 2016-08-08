@@ -31,10 +31,10 @@ exports.create = function(newAssignment) {
               .set(`id = "${uuid.v4()}"`)
               .toString();
     connection.query(sql,  err => {
-      console.log(add)
+      console.log('ERROR ' , err)
       if (err) reject(err)
       else resolve();
-    })
+    });
   });
 }
 
