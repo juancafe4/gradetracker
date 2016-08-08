@@ -116,7 +116,7 @@ exports.getOne = function(id) {
 
 //Get the total score total possible and grades
 exports.total = function(assignments) {
-  console.log('Assignments ', assignments)
+  
   return new Promise((resolve, reject) => {
     if (!assignments) reject("Error getting total")
     else {
@@ -125,7 +125,7 @@ exports.total = function(assignments) {
         let total_score = 0;
         let grades = {};
 
-        assignments.reduce(val => {
+        assignments.reduce((prev, curr, index, array) => {
           total_possible += val.total
         }, total_possible);
 
