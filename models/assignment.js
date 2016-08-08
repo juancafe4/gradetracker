@@ -14,7 +14,7 @@ connection.query(`create table if not exists assignments (
 exports.getAll = function() {
   return new Promise((resolve, reject) => {
     let sql = squel.select().from('assignments').toString()
-    connection.query(squel , (err, assignments) => {
+    connection.query(sql , (err, assignments) => {
       console.log('ERROR ' , err)
       if (err) reject(err)
       else resolve(assignments)
