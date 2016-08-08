@@ -14,10 +14,28 @@ connection.query(`create table if not exists assignments (
 exports.getAll = function() {
   return new Promise((resolve, reject) => {
     let sql = squel.select().from('assignments').toString()
+
     connection.query(sql , (err, assignments) => {
       //console.log('ERROR ' , err)
+
+      //Calculating the grade
+      assignments.map(assgn => {
+        let percent = assgn.score / assgn.total * 100
+        if (percent >= 90) 
+          assgn.grade = 'A'
+        else if (percent < 90 && percent >= 80)
+          assgn.grade = 'B'
+        else if (percent < 80 && percent >= 70)
+          assgn.grade = 'C'
+        else (percent < 70 && percent >= 60)
+          assgn.grade ='D'
+        else
+          assgn.grade = 'F'
+        return assgn
+      })
+
       if (err) reject(err)
-        else resolve(assignments)
+      else resolve(assignments)
       });
   })
 }
